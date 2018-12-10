@@ -1,14 +1,16 @@
+import controller.CalculatorController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Calculator;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("view/main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("view/calculator.fxml"));
         primaryStage.setTitle("Java Calculator");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
