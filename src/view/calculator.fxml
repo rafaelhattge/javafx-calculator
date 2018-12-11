@@ -30,7 +30,7 @@
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
             <children>
-                <Button fx:id="btPlusMinus" mnemonicParsing="false" prefHeight="63.0" prefWidth="73.0" text="&#x00B1;" GridPane.rowIndex="5">
+                <Button fx:id="btPlusMinus" mnemonicParsing="false" prefHeight="63.0" prefWidth="73.0" text="±" GridPane.rowIndex="5">
                     <font>
                         <Font size="18.0" />
                     </font>
@@ -75,12 +75,12 @@
                         <Font size="18.0" />
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" prefHeight="63.0" prefWidth="73.0" text="CE" GridPane.rowIndex="1">
+                <Button fx:id="btClearEntry" mnemonicParsing="false" prefHeight="63.0" prefWidth="73.0" text="CE" GridPane.rowIndex="1">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" prefHeight="63.0" prefWidth="73.0" text="C" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <Button fx:id="btClear" mnemonicParsing="false" prefHeight="63.0" prefWidth="73.0" text="C" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <font>
                         <Font size="18.0" />
                     </font>
@@ -159,7 +159,7 @@
                         <Font size="20.0" />
                     </font>
                 </Label>
-                <Label fx:id="lbSeconPanel" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="56.0" prefHeight="36.0" prefWidth="290.0">
+                <Label fx:id="lbSecondPanel" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="56.0" prefHeight="36.0" prefWidth="290.0" text="" textAlignment="RIGHT">
                     <font>
                         <Font size="16.0" />
                     </font>

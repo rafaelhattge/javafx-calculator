@@ -3,7 +3,7 @@ package model;
 public class Calculator {
 
     private String mainPanel = "0";
-    private String secondPanel;
+    private String secondPanel = "";
     private String digit;
     private char operator;
     private double numerator;
@@ -56,6 +56,12 @@ public class Calculator {
     }
 
     //Other methods
+
+    public void setDefault(){
+        mainPanel = "0";
+        secondPanel = "";
+    }
+
     public void addDigit(String digit) {
         if (mainPanel.equals("0")) {
             setMainPanel(digit);

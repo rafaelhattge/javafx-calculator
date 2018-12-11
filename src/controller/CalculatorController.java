@@ -15,6 +15,8 @@ public class CalculatorController implements Initializable {
 
     Calculator calculator = new Calculator();
 
+    @FXML private Button btClear;
+    @FXML private Button btClearEntry;
     @FXML private Button btNegPos;
     @FXML private Button btZero;
     @FXML private Button btComma;
@@ -34,9 +36,16 @@ public class CalculatorController implements Initializable {
     @FXML private Button btOne;
     @FXML private Button btTwo;
     @FXML private Label lbMainPanel;
+    @FXML private Label lbSecondPanel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        btClear.setOnMouseClicked(e -> clear());
+        btClearEntry.setOnMouseClicked(e -> clearEntry());
+
+
+
 
         btZero.setOnMouseClicked(e -> {
             setLbMainPanel("0");
@@ -78,6 +87,19 @@ public class CalculatorController implements Initializable {
 
 
 
+
+
+    }
+
+    private void clear(){
+        calculator.setMainPanel("0");
+        lbMainPanel.setText("0");
+    }
+
+    private void clearEntry(){
+        clear();
+        calculator.setSecondPanel("");
+        lbSecondPanel.setText("");
     }
 
     private void setLbMainPanel(String digit){
