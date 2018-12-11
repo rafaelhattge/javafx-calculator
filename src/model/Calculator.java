@@ -68,33 +68,24 @@ public class Calculator {
         setNumber2(Double.parseDouble(number2));
 
         switch (getOperator()) {
-            case "+": {
+            case "+":
                 setNumber2(getNumber1() + getNumber2());
-            }
-            break;
-
-            case "-": {
+                break;
+            case "-":
                 setNumber2(getNumber1() - getNumber2());
-            }
-            break;
-
-            case "*": {
+                break;
+            case "*":
                 setNumber2(getNumber1() * getNumber2());
-            }
-            break;
-
-            case "/": {
+                break;
+            case "/":
                 setNumber2(getNumber1() / getNumber2());
-            }
-            break;
-
-            case "sqrt": {
+                break;
+            case "sqrt":
                 setNumber2(Math.sqrt(getNumber2()));
-            }
-
-            case "pow2": {
+                break;
+            case "pow2":
                 setNumber2(Math.pow(getNumber2(), 2));
-            }
+                break;
         }
     }
 }
