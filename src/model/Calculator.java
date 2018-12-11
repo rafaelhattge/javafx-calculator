@@ -1,5 +1,7 @@
 package model;
 
+import controller.CalculatorController;
+
 public class Calculator {
 
     private String number2String = "0";
@@ -7,6 +9,7 @@ public class Calculator {
     private String operator;
     private double number1;
     private double number2;
+    private boolean newOperation = true;
 
 
     public String getNumber2String() {
@@ -51,22 +54,21 @@ public class Calculator {
 
     //Other methods
 
-    public void setDefault() {
-        number2String = "0";
-        number1String = "";
-    }
-
     public void addDigit(String digit) {
-        if (number2String.equals("0")) {
+
+        if (number2String.equals("0") || newOperation) {
             setNumber2String(digit);
         } else {
             setNumber2String(getNumber2String() + digit);
         }
+        newOperation = false;
     }
 
-    public void performOperation(String number1, String number2) {
-        setNumber1(Double.parseDouble(number1));
-        setNumber2(Double.parseDouble(number2));
+    public void performOperation(String number1String, String number2String) {
+        setNumber1(Double.parseDouble(number1String));
+        setNumber2(Double.parseDouble(number2String));
+        newOperation = true;
+
 
         switch (getOperator()) {
             case "+":
@@ -79,13 +81,21 @@ public class Calculator {
                 setNumber2(getNumber1() * getNumber2());
                 break;
             case "/":
-                setNumber2(getNumber1() / getNumber2());
+                if(number2String.equals("0")) {
+                    setNumber2(0);
+                    setNumber2String("Cannot divide by zero");
+                } else{
+                    setNumber2(getNumber1() / getNumber2());
+                }
                 break;
             case "sqrt":
                 setNumber2(Math.sqrt(getNumber2()));
                 break;
             case "pow2":
                 setNumber2(Math.pow(getNumber2(), 2));
+                break;
+            default:
+                setNumber2(0);
                 break;
         }
     }
