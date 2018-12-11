@@ -5,8 +5,9 @@ public class Calculator {
     private String number2String = "0";
     private String number1String = "";
     private String operator;
-    private double number2;
     private double number1;
+    private double number2;
+
 
     public String getNumber2String() {
         return number2String;
