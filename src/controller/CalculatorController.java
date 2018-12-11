@@ -11,195 +11,78 @@ import java.util.ResourceBundle;
 
 public class CalculatorController implements Initializable {
 
-    Calculator calculator = new Calculator();
+    private Calculator calculator = new Calculator();
 
     @FXML
-    private Button btClear;
+    private Button btClear, btClearEntry, btPlusMinus, btComma, btEquals, btThree, btAddition, btDivision, btBackspace, btPowerOfTwo,
+            btSeven, btNine, btEight, btMultiplication, btFour, btFive, btSix, btSubtraction, btOne, btTwo, btSquareRoot, btZero, btPercentage;
     @FXML
-    private Button btClearEntry;
-    @FXML
-    private Button btPlusMinus;
-    @FXML
-    private Button btZero;
-    @FXML
-    private Button btComma;
-    @FXML
-    private Button btEquals;
-    @FXML
-    private Button btThree;
-    @FXML
-    private Button btAddition;
-    @FXML
-    private Button btPlus;
-    @FXML
-    private Button btBackspace;
-    @FXML
-    private Button btDivision;
-    @FXML
-    private Button btSeven;
-    @FXML
-    private Button btEight;
-    @FXML
-    private Button btNine;
-    @FXML
-    private Button btMultiplication;
-    @FXML
-    private Button btFour;
-    @FXML
-    private Button btFive;
-    @FXML
-    private Button btSix;
-    @FXML
-    private Button btSubtraction;
-    @FXML
-    private Button btOne;
-    @FXML
-    private Button btTwo;
-    @FXML
-    private Button btSquareRoot;
-    @FXML
-    private Label lbMainPanel;
-    @FXML
-    private Label lbSecondPanel;
+    private Label lbPrimaryDisplay, lbSecondaryDisplay;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        btZero.setOnMouseClicked(e -> setLbPrimaryDisplay("0"));
+        btOne.setOnMouseClicked(e -> setLbPrimaryDisplay("1"));
+        btTwo.setOnMouseClicked(e -> setLbPrimaryDisplay("2"));
+        btThree.setOnMouseClicked(e -> setLbPrimaryDisplay("3"));
+        btFour.setOnMouseClicked(e -> setLbPrimaryDisplay("4"));
+        btFive.setOnMouseClicked(e -> setLbPrimaryDisplay("5"));
+        btSix.setOnMouseClicked(e -> setLbPrimaryDisplay("6"));
+        btSeven.setOnMouseClicked(e -> setLbPrimaryDisplay("7"));
+        btEight.setOnMouseClicked(e -> setLbPrimaryDisplay("8"));
+        btNine.setOnMouseClicked(e -> setLbPrimaryDisplay("9"));
         btClear.setOnMouseClicked(e -> clear());
-
         btClearEntry.setOnMouseClicked(e -> clearEntry());
-
         btAddition.setOnMouseClicked(e -> prepareOperation("+"));
-
         btSubtraction.setOnMouseClicked(e -> prepareOperation("-"));
-
         btMultiplication.setOnMouseClicked(e -> prepareOperation("*"));
-
         btDivision.setOnMouseClicked(e -> prepareOperation("/"));
-
         btSquareRoot.setOnMouseClicked(e -> prepareOperation("sqrt"));
-
-        btEquals.setOnMouseClicked(e -> performOperation(calculator.getNumber1String(), calculator.getNumber2String()));
-
         btPlusMinus.setOnMouseClicked(e -> changeSign(calculator.getNumber2String()));
-
-        btZero.setOnMouseClicked(e -> {
-            setLbMainPanel("0");
-        });
-
-        btOne.setOnMouseClicked(e -> {
-            setLbMainPanel("1");
-        });
-
-        btTwo.setOnMouseClicked(e -> {
-            setLbMainPanel("2");
-        });
-
-        btThree.setOnMouseClicked(e -> {
-            setLbMainPanel("3");
-        });
-
-        btFour.setOnMouseClicked(e -> {
-            setLbMainPanel("4");
-        });
-
-        btFive.setOnMouseClicked(e -> {
-            setLbMainPanel("5");
-        });
-
-        btSix.setOnMouseClicked(e -> {
-            setLbMainPanel("6");
-        });
-
-        btSeven.setOnMouseClicked(e -> {
-            setLbMainPanel("7");
-        });
-
-        btEight.setOnMouseClicked(e -> {
-            setLbMainPanel("8");
-        });
-
-        btNine.setOnMouseClicked(e -> {
-            setLbMainPanel("9");
+        btEquals.setOnMouseClicked(e ->
+        {
+            calculator.performOperation(calculator.getNumber1String(), calculator.getNumber2String());
+            convertToString();
         });
 
     }
 
     private void clear() {
         calculator.setNumber2String("0");
-        lbMainPanel.setText("0");
+        lbPrimaryDisplay.setText("0");
     }
 
     private void clearEntry() {
         clear();
         calculator.setNumber1String("");
-        lbSecondPanel.setText("");
+        lbSecondaryDisplay.setText("");
     }
 
-    private void setLbMainPanel(String digit) {
+    private void setLbPrimaryDisplay(String digit) {
         calculator.addDigit(digit);
-        lbMainPanel.setText(calculator.getNumber2String());
+        lbPrimaryDisplay.setText(calculator.getNumber2String());
     }
 
     private void prepareOperation(String operator) {
         calculator.setOperator(operator);
         calculator.setNumber1String(calculator.getNumber2String());
         calculator.setNumber2String("0");
-        lbSecondPanel.setText(calculator.getNumber1String() + " " + operator);
-        lbMainPanel.setText(calculator.getNumber2String());
+        lbSecondaryDisplay.setText(calculator.getNumber1String() + " " + operator);
+        lbPrimaryDisplay.setText(calculator.getNumber2String());
     }
 
     private void convertToString() {
         calculator.setNumber2String(Double.toString(calculator.getNumber2()));
         calculator.setNumber1String("");
-        lbSecondPanel.setText(calculator.getNumber1String());
-        lbMainPanel.setText(calculator.getNumber2String());
+        lbSecondaryDisplay.setText(calculator.getNumber1String());
+        lbPrimaryDisplay.setText(calculator.getNumber2String());
     }
 
     private void changeSign(String number2) {
         calculator.setNumber2(-Double.parseDouble(number2));
         calculator.setNumber2String(Double.toString(calculator.getNumber2()));
-        lbMainPanel.setText(calculator.getNumber2String());
+        lbPrimaryDisplay.setText(calculator.getNumber2String());
     }
 
-    private void performOperation(String number1, String number2) {
-        calculator.setNumber1(Double.parseDouble(number1));
-        calculator.setNumber2(Double.parseDouble(number2));
-
-        switch (calculator.getOperator()) {
-            case "+": {
-                calculator.setNumber2(calculator.getNumber1() + calculator.getNumber2());
-                convertToString();
-            }
-            break;
-
-            case "-": {
-                calculator.setNumber2(calculator.getNumber1() - calculator.getNumber2());
-                convertToString();
-            }
-            break;
-
-            case "*": {
-                calculator.setNumber2(calculator.getNumber1() * calculator.getNumber2());
-                convertToString();
-            }
-            break;
-
-            case "/": {
-                calculator.setNumber2(calculator.getNumber1() / calculator.getNumber2());
-                convertToString();
-            }
-            break;
-
-            case "sqrt": {
-                calculator.setNumber2(Math.sqrt(calculator.getNumber2()));
-                convertToString();
-            }
-
-            case "pow2": {
-                calculator.setNumber2(Math.pow(calculator.getNumber2(), 2));
-                convertToString();
-            }
-        }
-    }
 }

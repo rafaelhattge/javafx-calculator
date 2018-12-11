@@ -4,20 +4,9 @@ public class Calculator {
 
     private String number2String = "0";
     private String number1String = "";
-    private String digit;
     private String operator;
-    private double numerator;
-    private double denominator;
     private double number2;
     private double number1;
-
-    public String getDigit() {
-        return digit;
-    }
-
-    public void setDigit(String digit) {
-        this.digit = digit;
-    }
 
     public String getNumber2String() {
         return number2String;
@@ -41,22 +30,6 @@ public class Calculator {
 
     public void setOperator(String operator) {
         this.operator = operator;
-    }
-
-    public double getNumerator() {
-        return numerator;
-    }
-
-    public void setNumerator(double numerator) {
-        this.numerator = numerator;
-    }
-
-    public double getDenominator() {
-        return denominator;
-    }
-
-    public void setDenominator(double denominator) {
-        this.denominator = denominator;
     }
 
     public double getNumber2() {
@@ -87,6 +60,41 @@ public class Calculator {
             setNumber2String(digit);
         } else {
             setNumber2String(getNumber2String() + digit);
+        }
+    }
+
+    public void performOperation(String number1, String number2) {
+        setNumber1(Double.parseDouble(number1));
+        setNumber2(Double.parseDouble(number2));
+
+        switch (getOperator()) {
+            case "+": {
+                setNumber2(getNumber1() + getNumber2());
+            }
+            break;
+
+            case "-": {
+                setNumber2(getNumber1() - getNumber2());
+            }
+            break;
+
+            case "*": {
+                setNumber2(getNumber1() * getNumber2());
+            }
+            break;
+
+            case "/": {
+                setNumber2(getNumber1() / getNumber2());
+            }
+            break;
+
+            case "sqrt": {
+                setNumber2(Math.sqrt(getNumber2()));
+            }
+
+            case "pow2": {
+                setNumber2(Math.pow(getNumber2(), 2));
+            }
         }
     }
 }
