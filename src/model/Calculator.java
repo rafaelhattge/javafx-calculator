@@ -2,71 +2,91 @@ package model;
 
 public class Calculator {
 
-    private String mainPanel = "0";
-    private String secondPanel = "";
+    private String number2String = "0";
+    private String number1String = "";
     private String digit;
-    private char operator;
+    private String operator;
     private double numerator;
     private double denominator;
-    private double number;
-    private double result;
+    private double number2;
+    private double number1;
 
-    //Getters and Setters
-    public String getDigit() { return digit; }
-    public void setDigit(String digit) { this.digit = digit; }
-    public String getMainPanel() {
-        return mainPanel;
+    public String getDigit() {
+        return digit;
     }
-    public void setMainPanel(String mainPanel) { this.mainPanel = mainPanel; }
-    public String getSecondPanel() {
-        return secondPanel;
+
+    public void setDigit(String digit) {
+        this.digit = digit;
     }
-    public void setSecondPanel(String secondPanel) {
-        this.secondPanel = secondPanel;
+
+    public String getNumber2String() {
+        return number2String;
     }
-    public char getOperator() {
+
+    public void setNumber2String(String number2String) {
+        this.number2String = number2String;
+    }
+
+    public String getNumber1String() {
+        return number1String;
+    }
+
+    public void setNumber1String(String number1String) {
+        this.number1String = number1String;
+    }
+
+    public String getOperator() {
         return operator;
     }
-    public void setOperator(char operator) {
+
+    public void setOperator(String operator) {
         this.operator = operator;
     }
+
     public double getNumerator() {
         return numerator;
     }
+
     public void setNumerator(double numerator) {
         this.numerator = numerator;
     }
+
     public double getDenominator() {
         return denominator;
     }
+
     public void setDenominator(double denominator) {
         this.denominator = denominator;
     }
-    public double getNumber() {
-        return number;
+
+    public double getNumber2() {
+        return number2;
     }
-    public void setNumber(double number) {
-        this.number = number;
+
+    public void setNumber2(double number2) {
+        this.number2 = number2;
     }
-    public double getResult() {
-        return result;
+
+    public double getNumber1() {
+        return number1;
     }
-    public void setResult(double result) {
-        this.result = result;
+
+    public void setNumber1(double number1) {
+        this.number1 = number1;
     }
 
     //Other methods
 
-    public void setDefault(){
-        mainPanel = "0";
-        secondPanel = "";
+    public void setDefault() {
+        number2String = "0";
+        number1String = "";
     }
 
     public void addDigit(String digit) {
-        if (mainPanel.equals("0")) {
-            setMainPanel(digit);
+        if (number2String.equals("0")) {
+            setNumber2String(digit);
         } else {
-            setMainPanel(getMainPanel() + digit);
+            setNumber2String(getNumber2String() + digit);
         }
     }
 }
